@@ -1,0 +1,11 @@
+Cada carpeta tiene un archivo como este que describe el contenido de cada una
+
+1.	Files: Aquí se dejan los archivos con los que se van a trabajar. En el template de proyecto la carpeta files no se va a GIT (aquí tb se puede poner ppt, informes, etc)
+a.	Data: todos los datos
+	i.	Input: datos crudos
+	ii.	Intermedia: si se tiene dos archivos crudos que se quieren procesar, se ponen dos códigos en pre-processing y se guardan los nuevos archivos en Intermedia
+	iii.	Output: ya lo que se preproceso y se ocupará en el modelo (todo junto)
+	iv.	Model_fit: se guardan los modelos en RDS
+b.	Docs clientes: todos los documentos y dataset que te pasa el cliente
+c.	Documentation: el html de los notebooks hay que guardarlo acá
+d.	References: papers u otras cosas

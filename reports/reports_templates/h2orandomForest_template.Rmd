@@ -1,0 +1,75 @@
+---
+title: "`r paste('Reporte H2O Random Forest',project.name)`"
+date: "`r format(Sys.Date(),'%B %d %Y')`"
+output:
+  html_document:
+    df_paged: paged
+    theme: cerulean
+---
+
+
+```{r setup,echo=FALSE,warning=FALSE,message=FALSE,include=FALSE}
+library(knitr)
+library(toolkitEntel)
+safeLibrary(h2o)
+safeLibrary(plyr)
+knitr::opts_chunk$set(echo = FALSE)
+knitr::opts_chunk$set(warning = FALSE)
+knitr::opts_chunk$set(message = FALSE)
+knitr::opts_chunk$set(fig.align='center')
+knitr::opts_knit$set(root.dir = "../")
+
+```
+
+# Parametros del modelo
+
+```{r }
+parameters=calibration@parameters
+parameters$x=NULL
+parameters$y=NULL
+parameters=ldply(parameters,x=x)
+names(parameters)=c("Parameter","value")
+kable(x = parameters ,col.names = colnames(parameters),row.names = F,align = c('l','l'))
+```
+
+## Importancia de las variables
+```{r }
+importance = h2o.varimp(calibration)
+kable(x = importance ,col.names = colnames(importance),row.names = F,align = c('l','r','r','r'))
+```
+
+```{r, include = FALSE}
+
+file.name = paste0(report.dir,"var_importance_of_",model.name)
+fwrite(importance,paste0(file.name,".csv"), sep = ";", dec = sep.dec)
+```
+
+##Gráfico 
+```{r }
+plot(calibration)
+```
+
+# Features del Set de Entrenamiento 
+```{r }
+features=attr(calibration,"features")
+file.name.features = paste0(report.dir,"features_", model.name)
+cat(capture.output(print(features), file=paste0(file.name.features,".txt")))
+```
+```{r ,echo=TRUE}
+#Variable a predecir
+names(features$predicted_var)
+#Variable llave
+names(features$key)
+#variables categoricas 
+features$factors
+#Variable con informacion extra
+names(features$extra_info)
+#variables calculadas con scripts
+features$script
+#Todas las variables predictoras 
+names(features$predictor_var)
+
+```
+
+
+

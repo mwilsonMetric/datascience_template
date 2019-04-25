@@ -1,0 +1,2 @@
+Funciones del proyecto que el usuario no quiere incluir en el package toolkitEntel, se cargarán todas automaticamente con init.R
+si hay una funcion que no se desee cargar, se puede poner en avivable (o cualquier otra subcarpeta)

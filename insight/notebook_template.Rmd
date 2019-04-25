@@ -1,0 +1,29 @@
+---
+title: "Titulo Notebook"
+output: html_notebook
+---
+
+```{r setup, include=FALSE}
+# Setip del notebook
+if(!require("knitr")){
+  install.packages("knitr")
+  library(knitr)
+}
+if(basename(getwd()) %in% c("reports","models","insight")){
+  current_directory = basename(getwd())
+  opts_knit$set(root.dir = "../")
+}
+```
+
+```{r init, include=FALSE}
+source("init.R")
+```
+
+
+# Grafico ZYX
+
+```{r}
+hist(rnorm(10000))
+```
+
+
