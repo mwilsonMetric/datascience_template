@@ -13,8 +13,8 @@ if( "tidyverse" %in% rownames(installed.packages()) ){
 # Proyect Parameters ------------------------------------------------------
 
 path_src = paste0(getwd(),"/") # Si se pone rstudioapi::, solo se puede usar desde rstudio, no desde shiny
-path_files = paste0(project.src.path,"files/")
-project_name = basename(project.src.path)
+path_files = paste0(path_src,"files/")
+project_name = basename(path_src)
 
 # Basic Libraries Entel Framework -----------------------------------------
 
